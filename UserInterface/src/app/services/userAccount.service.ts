@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { UserAccount } from '../models/userAccount';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
-import { _throw } from 'rxjs/observable/throw';
+import { throwError } from 'rxjs';
 
 @Injectable()
 export class UserAccountService {
@@ -22,7 +22,7 @@ export class UserAccountService {
       .pipe(map(result => {
         console.log(result);
         return user;
-      }), catchError(error => _throw(error.error)));
+      }), catchError(error => throwError(error.error)));
   }
 
   signIn(user: UserAccount) {
@@ -30,7 +30,7 @@ export class UserAccountService {
     const signin = '/signin';
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
     return this.http.post(`${this.url}${signin}`, body, {headers: headers})
-      .pipe(catchError(error => _throw(error.error)));
+      .pipe(catchError(error => throwError(error.error)));
   }
 
   getCurrentUser() {
@@ -42,7 +42,7 @@ export class UserAccountService {
         return data.obj;
       }), catchError(error => {
         console.error(error.error);
-        return _throw(error.error);
+        return throwError(error.error);
       }));
   }
 

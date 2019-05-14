@@ -32,7 +32,7 @@ export class ReviewPaymentComponent implements OnInit {
   ngOnInit() {
     if (this.route.params[ '_value' ].eventId) {
       this.eventsService.getEventsByDate()
-        .subscribe(data => {
+        .subscribe((data: Events[]) => {
           console.log(data);
           data.forEach(e => {
             if (e._id === this.route.params['_value'].eventId) {
@@ -69,7 +69,7 @@ export class ReviewPaymentComponent implements OnInit {
   onBookNow() {
     let user: UserAccount;
     this.userAccountService.getCurrentUser().subscribe(
-      data => {
+      (data: UserAccount) => {
         user = data;
         const booking = new Booking(
           this.evt,

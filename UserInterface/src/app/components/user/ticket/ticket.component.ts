@@ -24,7 +24,7 @@ export class TicketComponent implements OnInit {
     this.userAccountService.getCurrentUser()
       .subscribe(data => {
         this.user = data;
-        id = data._id;
+        id = data['_id'];
         this.bookingService.getBookingByUserId(id)
           .subscribe(result => {
             console.log(result);

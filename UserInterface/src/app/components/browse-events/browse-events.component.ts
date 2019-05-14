@@ -31,7 +31,7 @@ export class BrowseEventsComponent implements OnInit {
       this.getEvents(this.start, this.limit);
     } else {
       this.eventsService.getEventsByCategory(this.route.params['_value'].category)
-        .subscribe(data => {
+        .subscribe((data: Events[]) => {
           this.events = data;
           const firstChar = this.route.params['_value'].category.charAt(0).toUpperCase();
           const restoftheWord = this.route.params['_value'].category.slice(1).toLowerCase();
@@ -51,7 +51,7 @@ export class BrowseEventsComponent implements OnInit {
 
   getEvents(start: number, limit: number) {
     this.eventsService.getEvents(start, limit)
-      .subscribe(data => {
+      .subscribe((data: Events[]) => {
         data.forEach(element => {
           this.events.push(element);
         });

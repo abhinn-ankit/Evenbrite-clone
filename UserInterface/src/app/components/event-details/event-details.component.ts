@@ -25,7 +25,7 @@ export class EventDetailsComponent implements OnInit {
   ngOnInit() {
     this.eventService.getEventsByDate()
       .subscribe(
-        data => {
+        (data: Events[]) => {
           this.allEvnts = data.slice();
           this.getEvntDetail();
           if (!this.evtInfo) {

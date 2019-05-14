@@ -33,8 +33,8 @@ export class LoginComponent implements OnInit {
     this.userAccountService.signIn(user)
       .subscribe(
         data => {
-          localStorage.setItem('token', data.token);
-          localStorage.setItem('user', JSON.stringify(data.user));
+          localStorage.setItem('token', data['token']);
+          localStorage.setItem('user', JSON.stringify(data['user']));
           this.userAccountService.user = JSON.parse(localStorage.getItem('user'));
           this.router.navigateByUrl('/home');
         },

@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map, } from 'rxjs/operators';
-import { _throw } from 'rxjs/observable/throw';
 import { Events } from '../models/events';
+import { throwError } from 'rxjs';
 
 @Injectable()
 export class EventsService {
@@ -19,7 +19,7 @@ export class EventsService {
         this.events = data.obj.slice();
         return this.events;
       }), catchError(
-        error => _throw(error.error)
+        error => throwError(error.error)
       ));
   }
 
@@ -29,7 +29,7 @@ export class EventsService {
         this.events = data.obj.slice();
         return this.events;
       }), catchError(
-        error => _throw(error.error)
+        error => throwError(error.error)
       ));
   }
 
@@ -56,7 +56,7 @@ export class EventsService {
         this.events = data.obj.slice();
         return this.events;
       }), catchError(
-        error => _throw(error.error)
+        error => throwError(error.error)
       ));
   }
 }
