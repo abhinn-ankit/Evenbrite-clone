@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
 import { Booking } from '../models/Booking';
-import { _throw } from 'rxjs/observable/throw';
+import { throwError } from 'rxjs';
 
 @Injectable()
 export class BookingService {
@@ -19,7 +19,7 @@ export class BookingService {
       .pipe(map(data => {
           console.log(data.obj);
           return data.obj;
-        }, catchError(err => _throw(err.error)))
+        }, catchError(err => throwError(err.error)))
       );
   }
 
@@ -28,7 +28,7 @@ export class BookingService {
       .pipe(map(data => {
           console.log(data);
           return data.obj;
-        }, catchError(err => _throw(err.error)))
+        }, catchError(err => throwError(err.error)))
       );
   }
 
